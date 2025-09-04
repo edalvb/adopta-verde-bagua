@@ -1,4 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Adopta Verde Bagua
+
+Aplicación Next.js para el Vivero Municipal de Bagua.
+
+Requisitos:
+
+- Node 18+
+
+Variables de entorno:
+
+```bash
+NEXT_PUBLIC_MANAGER_PHONE=595XXXXXXXX
+```
+
+Desarrollo:
+
+```bash
+npm install
+npm run dev
+```
+
+Rutas:
+
+- / → portada
+- /adoption → formulario de adopción con envío a WhatsApp
 
 ## Getting Started
 
