@@ -103,7 +103,7 @@ export async function GET(req: Request) {
         accept: "image/avif,image/webp,image/apng,image/*;q=0.8,*/*;q=0.5",
       },
     });
-  } catch (e) {
+  } catch {
     clearTimeout(timeout);
     return new Response(JSON.stringify({ error: "Upstream fetch failed" }), {
       status: 502,

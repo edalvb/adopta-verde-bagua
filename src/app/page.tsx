@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { InMemoryPlantRepository } from "@/features/adoption/infra/memoryRepositories";
 import { toProxied } from "@/lib/imageProxy";
 import { Navbar } from "./components/Navbar";
@@ -23,12 +24,12 @@ export default async function Home() {
             Contribuye a una ciudad más verde adoptando una planta de nuestro vivero municipal. 
             Cada adopción ayuda a embellecer nuestros espacios públicos.
           </p>
-          <a
+          <Link
             href="/adoption"
             className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-yellow-400 hover:bg-yellow-300 text-green-800 font-poppins font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
           >
             Adopta ahora
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -78,12 +79,12 @@ export default async function Home() {
                         {p.scientificName}
                       </p>
                     )}
-                    <a
+                    <Link
                       href="/adoption"
                       className="inline-block px-4 sm:px-6 py-2 bg-white/20 text-green-800 font-medium border border-white/30 rounded-xl backdrop-blur-md hover:bg-white/30 transition-all duration-300 text-sm"
                     >
                       Adoptar
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))}
