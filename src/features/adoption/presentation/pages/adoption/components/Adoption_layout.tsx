@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { adoptionSchema } from "../Adoption_controller";
 import Image from "next/image";
+import { toProxied } from "@/lib/imageProxy";
 
 type FormData = {
   plantId: string;
@@ -35,13 +36,7 @@ export function AdoptionLayout() {
   const plantId = watch("plantId");
   const selected = plants.find((p) => p.id === plantId);
 
-  const toProxied = (src: string | null | undefined) => {
-    if (!src) return src ?? "";
-    if (/^https?:\/\//i.test(src)) {
-      return `/api/image?url=${encodeURIComponent(src)}`;
-    }
-    return src;
-  };
+  // ...
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">

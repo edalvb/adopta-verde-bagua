@@ -1,19 +1,12 @@
 import Image from "next/image";
 import { InMemoryPlantRepository } from "@/features/adoption/infra/memoryRepositories";
+import { toProxied } from "@/lib/imageProxy";
 
 export default async function Home() {
   const repo = new InMemoryPlantRepository();
   const plants = await repo.list();
 
-  const toProxied = (src: string | null | undefined) => {
-    if (!src) return src ?? "";
-    // Si es una URL http/https, pásala por el proxy interno.
-    if (/^https?:\/\//i.test(src)) {
-      return `/api/image?url=${encodeURIComponent(src)}`;
-    }
-    // Para rutas locales (/public) u otros esquemas, dejar igual.
-    return src;
-  };
+  // ...
 
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
