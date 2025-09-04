@@ -7,7 +7,7 @@ const seedPlants: Plant[] = [
     commonName: "Molle",
     scientificName: "Schinus molle",
     description: "Árbol nativo, resistente a sequía",
-    imageUrl: "/next.svg",
+    imageUrl: "https://image.jimcdn.com/app/cms/image/transf/dimension=origxorig:format=jpg/path/s618c5397d9ab18bd/image/i2fa585b94a61ad5f/version/1437696415/image.jpg",
     available: true,
   },
   {
@@ -15,7 +15,7 @@ const seedPlants: Plant[] = [
     commonName: "Cedro",
     scientificName: "Cedrela odorata",
     description: "Árbol de sombra, crecimiento medio",
-    imageUrl: "/next.svg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Cedrorosaaclimacao.jpg/250px-Cedrorosaaclimacao.jpg",
     available: true,
   },
 ];
