@@ -4,6 +4,7 @@ import { useAdoptionState } from "../adoption_states";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { adoptionSchema } from "../Adoption_controller";
+import Image from "next/image";
 
 type FormData = {
   plantId: string;
@@ -33,6 +34,14 @@ export function AdoptionLayout() {
 
   const plantId = watch("plantId");
   const selected = plants.find((p) => p.id === plantId);
+
+  const toProxied = (src: string | null | undefined) => {
+    if (!src) return src ?? "";
+    if (/^https?:\/\//i.test(src)) {
+      return `/api/image?url=${encodeURIComponent(src)}`;
+    }
+    return src;
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">
@@ -100,6 +109,18 @@ export function AdoptionLayout() {
           <h2 className="font-medium">Seleccionada: {selected.commonName}</h2>
           {selected.scientificName && <p className="text-sm text-gray-600">{selected.scientificName}</p>}
           {selected.description && <p className="mt-2 text-sm">{selected.description}</p>}
+          {selected.imageUrl && (
+            <div className="relative w-full mt-3 aspect-[4/3] overflow-hidden rounded border border-black/10">
+              <Image
+                src={toProxied(selected.imageUrl)}
+                alt={selected.commonName}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority={false}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

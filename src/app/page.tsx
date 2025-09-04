@@ -5,6 +5,16 @@ export default async function Home() {
   const repo = new InMemoryPlantRepository();
   const plants = await repo.list();
 
+  const toProxied = (src: string | null | undefined) => {
+    if (!src) return src ?? "";
+    // Si es una URL http/https, pásala por el proxy interno.
+    if (/^https?:\/\//i.test(src)) {
+      return `/api/image?url=${encodeURIComponent(src)}`;
+    }
+    // Para rutas locales (/public) u otros esquemas, dejar igual.
+    return src;
+  };
+
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full max-w-5xl">
@@ -29,9 +39,9 @@ export default async function Home() {
               {plants.map((p) => (
                 <li key={p.id} className="">
                   <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg border border-black/10 dark:border-white/15 bg-gray-50">
-                    {p.imageUrl ? (
+          {p.imageUrl ? (
                       <Image
-                        src={p.imageUrl}
+            src={toProxied(p.imageUrl)}
                         alt={p.commonName}
                         fill
                         className="object-cover"
