@@ -37,6 +37,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
   border-radius: 0.75rem;
+  transition: all 0.3s ease;
 }
 
 .glass-input:focus {
@@ -50,6 +51,45 @@
 .glass-input option {
   background: white;
   color: #2E7D32;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .glass-card {
+    border-radius: 0.75rem;
+  }
+  
+  .glass-input {
+    border-radius: 0.5rem;
+  }
+}
+
+/* Mobile menu animation */
+@media (max-width: 767px) {
+  .mobile-menu-enter {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
