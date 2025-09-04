@@ -72,6 +72,12 @@ export function Navbar({ showBackButton = false }: NavbarProps) {
           >
             Adopta
           </Link>
+          <Link 
+            href="/equipo" 
+            className="text-green-800 hover:text-green-600 font-medium transition-colors"
+          >
+            Equipo
+          </Link>
           <a 
             href="#contacto" 
             className="text-green-800 hover:text-green-600 font-medium transition-colors"
@@ -122,6 +128,14 @@ export function Navbar({ showBackButton = false }: NavbarProps) {
             >
               <span>🤝</span>
               <span>Adopta</span>
+            </Link>
+            <Link 
+              href="/equipo" 
+              className="text-green-800 hover:text-green-600 hover:bg-white/10 font-medium transition-all duration-200 px-3 py-2 rounded-lg text-sm flex items-center gap-2"
+              onClick={closeMobileMenu}
+            >
+              <span>👥</span>
+              <span>Equipo</span>
             </Link>
             <a 
               href="#contacto" 
