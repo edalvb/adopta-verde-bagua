@@ -1,26 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colores del sistema de diseño */
+  --green-primary: #4CAF50;
+  --green-secondary: #81C784;
+  --green-dark: #2E7D32;
+  --accent-yellow: #FFEB3B;
+  --neutral-bg: #E8F5E9;
+  
+  /* Glass colors */
+  --glass-light: rgba(255, 255, 255, 0.2);
+  --glass-medium: rgba(255, 255, 255, 0.35);
+  --glass-strong: rgba(255, 255, 255, 0.6);
+  
+  /* Gradientes */
+  --gradient-green: linear-gradient(135deg, #A8E063 0%, #56AB2F 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+  
+  /* Compatibilidad con theme anterior */
+  --background: var(--neutral-bg);
+  --foreground: #2E7D32;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Estilos glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.glass-input {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 0.75rem;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: var(--green-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Select styling for glass inputs */
+.glass-input option {
+  background: white;
+  color: #2E7D32;
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
 }

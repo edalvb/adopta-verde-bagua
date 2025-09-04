@@ -1,40 +1,62 @@
 import Image from "next/image";
 import { InMemoryPlantRepository } from "@/features/adoption/infra/memoryRepositories";
 import { toProxied } from "@/lib/imageProxy";
+import { Navbar } from "./components/Navbar";
 
 export default async function Home() {
   const repo = new InMemoryPlantRepository();
   const plants = await repo.list();
 
-  // ...
-
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full max-w-5xl">
-        <h1 className="text-3xl font-semibold">Vivero Municipal de Bagua</h1>
-        <p className="text-gray-700">Adopta una planta y contribuye a una ciudad más verde.</p>
+    <div className="min-h-screen font-inter">
+      {/* Navbar */}
+      <Navbar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center pt-20 px-4">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-green-50 to-emerald-100"></div>
+        <div className="glass-card max-w-2xl mx-auto text-center p-8 relative z-10">
+          <h2 className="text-4xl font-poppins font-bold text-green-800 mb-4">
+            Adopta una planta, regala vida a Bagua 🌱
+          </h2>
+          <p className="text-lg text-green-700 mb-8 leading-relaxed">
+            Contribuye a una ciudad más verde adoptando una planta de nuestro vivero municipal. 
+            Cada adopción ayuda a embellecer nuestros espacios públicos.
+          </p>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
             href="/adoption"
+            className="inline-block px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-green-800 font-poppins font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
           >
-            Adopta una planta
+            Adopta ahora
           </a>
         </div>
+      </section>
 
-        <section className="w-full mt-4">
-          <h2 className="sr-only">Plantas disponibles</h2>
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-4 py-16">
+        <section id="plantas" className="mb-16">
+          <div className="glass-card p-8 mb-8">
+            <h2 className="text-3xl font-poppins font-bold text-green-800 mb-4 text-center">
+              Plantas Disponibles
+            </h2>
+            <p className="text-green-700 text-center max-w-2xl mx-auto">
+              Descubre nuestra colección de plantas nativas y ornamentales, 
+              perfectas para embellecer tu hogar y nuestra ciudad.
+            </p>
+          </div>
+
           {plants.length === 0 ? (
-            <p className="text-gray-500">No hay plantas disponibles por ahora.</p>
+            <div className="glass-card p-8 text-center">
+              <p className="text-green-600">No hay plantas disponibles por ahora.</p>
+            </div>
           ) : (
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {plants.map((p) => (
-                <li key={p.id} className="">
-                  <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg border border-black/10 dark:border-white/15 bg-gray-50">
-          {p.imageUrl ? (
+                <div key={p.id} className="glass-card p-6 hover:scale-105 transition-transform duration-300">
+                  <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-full border-4 border-white/30">
+                    {p.imageUrl ? (
                       <Image
-            src={toProxied(p.imageUrl)}
+                        src={toProxied(p.imageUrl)}
                         alt={p.commonName}
                         fill
                         className="object-cover"
@@ -42,24 +64,58 @@ export default async function Home() {
                         priority
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-sm text-gray-500">
-                        Sin imagen
+                      <div className="absolute inset-0 flex items-center justify-center text-green-600 bg-green-50/50">
+                        <span className="text-4xl">🌿</span>
                       </div>
                     )}
                   </div>
-                  <div className="mt-2">
-                    <h3 className="font-medium leading-tight">{p.commonName}</h3>
+                  <div className="text-center">
+                    <h3 className="text-xl font-poppins font-semibold text-green-800 mb-1">
+                      {p.commonName}
+                    </h3>
                     {p.scientificName && (
-                      <p className="text-xs text-gray-500 italic">{p.scientificName}</p>
+                      <p className="text-sm text-green-600 italic mb-4">
+                        {p.scientificName}
+                      </p>
                     )}
+                    <a
+                      href="/adoption"
+                      className="inline-block px-6 py-2 bg-white/20 text-green-800 font-medium border border-white/30 rounded-xl backdrop-blur-md hover:bg-white/30 transition-all duration-300"
+                    >
+                      Adoptar
+                    </a>
                   </div>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
+
+      {/* Footer */}
+      <footer className="glass-card mx-4 mb-4 p-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🌱</span>
+              <span className="font-poppins font-semibold text-green-800">
+                Vivero Municipal de Bagua
+              </span>
+            </div>
+            <div className="flex items-center gap-6 text-green-700">
+              <a href="#contacto" className="hover:text-green-500 transition-colors">
+                Contacto
+              </a>
+              <a href="#" className="hover:text-green-500 transition-colors">
+                Facebook
+              </a>
+              <a href="#" className="hover:text-green-500 transition-colors">
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
